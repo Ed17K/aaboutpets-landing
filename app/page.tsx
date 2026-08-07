@@ -82,7 +82,7 @@ export default function HomePage() {
         </div>
         <div className="hero-photo">
           <Image
-            src="https://images.unsplash.com/photo-1601758174114-e711c0cbaa69?auto=format&fit=crop&w=1400&q=90"
+            src="/images/hero-caregiver-pets.jpg"
             alt="Caregiver relaxing at home with happy pets"
             fill
             priority
@@ -132,7 +132,7 @@ export default function HomePage() {
           <div className="safety-item"><span><Headphones /></span><div><h3>Local support, always</h3><p>Our friendly team in Singapore is here to help, whenever you need us.</p></div></div>
         </div>
         <div className="singapore-photo">
-          <Image src="https://images.unsplash.com/photo-1565967511849-76a60a516170?auto=format&fit=crop&w=1400&q=88" alt="Singapore skyline at Marina Bay" fill sizes="(max-width: 800px) 94vw, 52vw" />
+          <Image src="/images/singapore-marina-bay.jpg" alt="Singapore skyline at Marina Bay" fill sizes="(max-width: 800px) 94vw, 52vw" />
         </div>
       </section>
 
