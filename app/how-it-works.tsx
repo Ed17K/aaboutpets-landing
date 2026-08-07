@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { CalendarCheck, Cat, Dog, PawPrint, Search } from "lucide-react";
+import { CalendarCheck, PawPrint, Search } from "lucide-react";
+import { catJourneyFrames, dogJourneyFrames } from "./pet-sprites";
 
 const steps = [
   {
@@ -55,7 +56,13 @@ export default function HowItWorks() {
   }, []);
 
   const activeStep = progress < 0.33 ? 0 : progress < 0.67 ? 1 : 2;
-  const style = { "--pet-progress": progress } as CSSProperties;
+  const pose = progress < 0.3 ? 0 : progress < 0.7 ? 1 : 2;
+  const style = {
+    "--pet-x": `${7 + progress * 86}%`,
+    "--pet-y": `${42 + Math.sin(progress * Math.PI * 3) * 12}px`,
+    "--pet-mobile-y": `${progress * 100}%`,
+    "--pet-mobile-x": `${Math.sin(progress * Math.PI * 2) * 8}px`,
+  } as CSSProperties;
 
   return (
     <section className="how-section" id="how" ref={sectionRef} style={style}>
@@ -63,10 +70,6 @@ export default function HowItWorks() {
       <p className="how-intro">Three simple steps to professional pet care that feels like family.</p>
 
       <div className="steps-wrap">
-        <div className="pet-track" aria-hidden="true">
-          <span className="pet-runner pet-runner-dog"><Dog /></span>
-          <span className="pet-runner pet-runner-cat"><Cat /></span>
-        </div>
         <div className="steps">
           {steps.map(({ number, icon: Icon, title, text }, index) => (
             <article className={index <= activeStep ? "is-active" : ""} key={number}>
@@ -78,6 +81,18 @@ export default function HowItWorks() {
               <p>{text}</p>
             </article>
           ))}
+        </div>
+        <div className="pet-journey" aria-hidden="true">
+          <svg className="journey-curve" viewBox="0 0 1000 110" preserveAspectRatio="none">
+            <path d="M 28 62 C 150 6 255 106 382 58 S 625 7 752 62 S 895 101 972 46" />
+          </svg>
+          <span className="journey-paw paw-1"><PawPrint /></span>
+          <span className="journey-paw paw-2"><PawPrint /></span>
+          <span className="journey-paw paw-3"><PawPrint /></span>
+          <span className="journey-paw paw-4"><PawPrint /></span>
+          <span className="journey-paw paw-5"><PawPrint /></span>
+          <span className={`pet-sprite pet-sprite-dog pose-${pose}`} style={{ backgroundImage: dogJourneyFrames }} />
+          <span className={`pet-sprite pet-sprite-cat pose-${pose}`} style={{ backgroundImage: catJourneyFrames }} />
         </div>
       </div>
     </section>
