@@ -166,7 +166,7 @@ export default function HomePage() {
       <section className="final-cta" id="download">
         <div className="cta-copy"><span className="eyebrow">Care for your pet, wherever you are</span><h2>Ready to Give Your Pet the Best? <em>Download the App</em></h2><p>Unlock pet care at your fingertips. Discover locally vetted caregivers, book secure services and receive real-time updates from your smartphone.</p><AppBadges /></div>
         <div className="phone-art" aria-label="A About Pets mobile app screens">
-          <Image src="/images/a-about-pets-app-phones.png" alt="A About Pets app shown on two phones" fill sizes="(max-width: 800px) 92vw, 48vw" />
+          <Image src="/images/a-about-pets-app-phones-transparent.webp" alt="A About Pets app shown on two phones" fill sizes="(max-width: 800px) 92vw, 48vw" />
         </div>
       </section>
 
