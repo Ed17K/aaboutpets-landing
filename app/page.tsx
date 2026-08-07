@@ -1,8 +1,8 @@
 import Image from "next/image";
+import HowItWorks from "./how-it-works";
 import {
   ArrowRight,
   BadgeCheck,
-  CalendarCheck,
   Check,
   ChevronDown,
   CircleHelp,
@@ -13,7 +13,6 @@ import {
   MapPin,
   MessageCircle,
   PawPrint,
-  Search,
   ShieldCheck,
   Star,
   Video,
@@ -27,28 +26,26 @@ const services = [
   { icon: HouseHeart, title: "Boarding", text: "Overnight, cage-free care in a verified caregiver’s home." },
   { icon: PawPrint, title: "House Sitting", text: "Drop-in visits or overnight stays in your pet’s familiar home." },
   { icon: Heart, title: "Day Care", text: "Daytime play, socialisation and companionship while you are busy." },
-  { icon: Dog, title: "Dog Walking", text: "Reliable, tracked neighbourhood walks to keep your dog active." },
+  { icon: Dog, title: "Pet Walking", text: "Agreed walks and outdoor activity tailored to your pet’s routine." },
 ];
 
 const benefits = [
-  { icon: Video, title: "Video calls before booking", text: "Meet face-to-face and view the care environment virtually." },
-  { icon: Star, title: "Real profiles and reviews", text: "Compare experience, services, ratings and feedback before choosing." },
-  { icon: ShieldCheck, title: "Secure booking and payment", text: "Keep bookings, communication and digital payments within the platform." },
+  { icon: Video, title: "Innovation Meets Trust", text: "Connect face-to-face through integrated video calls and tour the care environment virtually before booking." },
+  { icon: Star, title: "Fair Pricing That Benefits Everyone", text: "Competitive rates designed to work for both pet owners and caregivers." },
+  { icon: ShieldCheck, title: "Safety and Convenience", text: "Identity-verified caregivers, secure in-app communication and straightforward booking." },
   { icon: Headphones, title: "Dedicated live support", text: "Get real-time assistance from the A About Pets team when needed." },
 ];
 
 const faqs = [
-  ["How does A About Pets work for pet owners?", "Download the app, browse caregivers by service, location and availability, then chat, book and pay securely through A About Pets."],
-  ["What pet care services are available?", "Caregivers may offer boarding, day care, house sitting—including drop-in or overnight care—and dog walking."],
-  ["How are caregivers verified?", "Every caregiver completes eKYC identity verification and an introduction test before offering services on the platform."],
+  ["How does A About Pets work for pet owners?", "Download the app and browse caregiver profiles by your needs, location and availability. Compare experience, services and reviews, use secure in-app chat to align expectations, then book and pay through A About Pets."],
+  ["How can I become a caregiver on A About Pets?", "List a service that complies with Singapore requirements, complete eKYC identity verification and pass the Pet Caregiver Introduction Test."],
   ["Can one account be used as both pet owner and caregiver?", "Yes. The same A About Pets account can be used in both roles."],
 ];
 
 function Logo() {
   return (
     <span className="logo" aria-label="A About Pets">
-      <span className="logo-mark"><PawPrint size={19} aria-hidden="true" /></span>
-      <span>A About Pets</span>
+      <Image src="/images/a-about-pets-logo.png" alt="A About Pets" width={438} height={154} priority />
     </span>
   );
 }
@@ -108,7 +105,7 @@ export default function HomePage() {
         <div className="hero-copy">
           <span className="eyebrow">Pet care across Singapore</span>
           <h1>Peace of mind for you. A second home for them.</h1>
-          <p>Connect with locally vetted caregivers for boarding, house sitting, day care and dog walking—all from the A About Pets app.</p>
+          <p>Connect with locally vetted caregivers for boarding, house sitting, day care and pet walking—all from the A About Pets app.</p>
           <AppBadges />
           <div className="hero-trust">
             <span><BadgeCheck size={19} />eKYC-verified caregivers</span>
@@ -135,17 +132,7 @@ export default function HomePage() {
         ))}
       </section>
 
-      <section className="how-section" id="how">
-        <span className="eyebrow">A simpler way to care</span>
-        <h2>Three steps to trusted pet care</h2>
-        <div className="steps">
-          <article><div className="step-visual"><span>1</span><div><Search /></div></div><h3>Discover local caregivers</h3><p>Browse profiles, services and real reviews near you.</p></article>
-          <div className="step-line" aria-hidden="true" />
-          <article><div className="step-visual"><span>2</span><div><CalendarCheck /></div></div><h3>Book with confidence</h3><p>Chat, select your dates and pay through the secure platform.</p></article>
-          <div className="step-line" aria-hidden="true" />
-          <article><div className="step-visual"><span>3</span><div><PawPrint /></div></div><h3>Relax and get updates</h3><p>Stay connected with messages, photos and videos in the app.</p></article>
-        </div>
-      </section>
+      <HowItWorks />
 
       <section className="safety-section" id="safety">
         <div className="safety-copy">
@@ -177,17 +164,19 @@ export default function HomePage() {
       </section>
 
       <section className="final-cta" id="download">
-        <PawPrint className="cta-paw cta-paw-left" aria-hidden="true" /><Heart className="cta-heart cta-heart-left" aria-hidden="true" /><Dog className="cta-dog cta-dog-left" aria-hidden="true" /><HouseHeart className="cta-house" aria-hidden="true" /><PawPrint className="cta-paw cta-paw-right" aria-hidden="true" />
-        <div><span className="eyebrow">Care wherever you are</span><h2>Ready to give your pet the best?</h2><p>Discover vetted caregivers, book securely and receive real-time updates.</p><AppBadges /></div>
+        <div className="cta-copy"><span className="eyebrow">Care for your pet, wherever you are</span><h2>Ready to Give Your Pet the Best? <em>Download the App</em></h2><p>Unlock pet care at your fingertips. Discover locally vetted caregivers, book secure services and receive real-time updates from your smartphone.</p><AppBadges /></div>
+        <div className="phone-art" aria-label="A About Pets mobile app screens">
+          <Image src="/images/a-about-pets-app-phones.png" alt="A About Pets app shown on two phones" fill sizes="(max-width: 800px) 92vw, 48vw" />
+        </div>
       </section>
 
       <footer>
         <div className="footer-grid">
           <div className="footer-brand"><Logo /><p>Elevating pet care standards in Singapore. Peace of mind for you, a second home for them.</p></div>
-          <div><h3>Services</h3><a href="#services">Boarding</a><a href="#services">House Sitting</a><a href="#services">Day Care</a><a href="#services">Dog Walking</a></div>
+          <div><h3>Services</h3><a href="#services">Boarding</a><a href="#services">House Sitting</a><a href="#services">Day Care</a><a href="#services">Pet Walking</a></div>
           <div><h3>Company</h3><a href="#how">How It Works</a><a href="#safety">Why Us</a><a href="#caregivers">For Caregivers</a><a href="https://aaboutpets.com/faq.html">Help Centre</a></div>
-          <div><h3>Legal</h3><a href="https://aaboutpets.com/privacy-policy.html">Privacy Policy</a><a href="https://aaboutpets.com/terms-of-use.html">Terms of Service</a><a href="mailto:support@aaboutpets.com">Contact Support</a></div>
-          <div><h3>Get the app</h3><AppBadges compact /><a className="support-link" href="mailto:support@aaboutpets.com"><CircleHelp size={16} /> support@aaboutpets.com</a></div>
+          <div><h3>Legal</h3><a href="https://aaboutpets.com/privacy-policy.html">Privacy Policy</a><a href="https://aaboutpets.com/terms-of-use.html">Terms of Service</a><a href="mailto:askaap@aaboutpets.com">Contact Support</a></div>
+          <div><h3>Get the app</h3><AppBadges compact /><a className="support-link" href="mailto:askaap@aaboutpets.com"><CircleHelp size={16} /> askaap@aaboutpets.com</a></div>
         </div>
         <div className="copyright">© 2026 A About Pets Pte. Ltd. All rights reserved. Made with care in Singapore.</div>
       </footer>

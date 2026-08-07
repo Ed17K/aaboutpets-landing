@@ -8,7 +8,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "A About Pets | Trusted Pet Care in Singapore",
   description:
-    "Book trusted pet sitters, dog walkers, home boarding and daycare across Singapore.",
+    "Book trusted caregivers for boarding, house sitting, day care and pet walking across Singapore.",
 };
 
 export const viewport: Viewport = {
