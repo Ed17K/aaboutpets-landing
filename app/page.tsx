@@ -2,8 +2,7 @@ import Image from "next/image";
 import {
   ArrowRight,
   BadgeCheck,
-  CalendarDays,
-  CarFront,
+  CalendarCheck,
   Check,
   ChevronDown,
   CircleHelp,
@@ -11,33 +10,38 @@ import {
   Headphones,
   Heart,
   HouseHeart,
-  LockKeyhole,
+  MapPin,
+  MessageCircle,
   PawPrint,
+  Search,
   ShieldCheck,
   Star,
-  UserRound,
+  Video,
 } from "lucide-react";
 
 const website = "https://aaboutpets.com/";
+const appStore = "https://apps.apple.com/sg/app/a-about-pets/id6755103989";
+const googlePlay = "https://play.google.com/store/apps/details?id=com.aaboutpets.app";
 
 const services = [
-  { icon: Dog, title: "Pet Sitting", text: "In-home pet sitting with loving, trusted caregivers." },
-  { icon: PawPrint, title: "Dog Walking", text: "Happy walks and exercise while you’re away." },
-  { icon: HouseHeart, title: "Home Visits", text: "Drop-in visits for feeding, playtime and more." },
-  { icon: CarFront, title: "Pet Taxi", text: "Safe and comfortable rides to where they need to go." },
+  { icon: HouseHeart, title: "Boarding", text: "Overnight, cage-free care in a verified caregiver’s home." },
+  { icon: PawPrint, title: "House Sitting", text: "Drop-in visits or overnight stays in your pet’s familiar home." },
+  { icon: Heart, title: "Day Care", text: "Daytime play, socialisation and companionship while you are busy." },
+  { icon: Dog, title: "Dog Walking", text: "Reliable, tracked neighbourhood walks to keep your dog active." },
 ];
 
-const prices = [
-  { name: "Pet Sitting", from: "$28", unit: "/ night", desc: "Overnight care in your home.", note: "Includes updates & playtime" },
-  { name: "Dog Walking", from: "$18", unit: "/ 30 mins", desc: "Fun and safe walks.", note: "Flexible durations" },
-  { name: "Home Visits", from: "$16", unit: "/ visit", desc: "Feeding, play & basic care.", note: "Customisable to your pet’s needs" },
+const benefits = [
+  { icon: Video, title: "Video calls before booking", text: "Meet face-to-face and view the care environment virtually." },
+  { icon: Star, title: "Real profiles and reviews", text: "Compare experience, services, ratings and feedback before choosing." },
+  { icon: ShieldCheck, title: "Secure booking and payment", text: "Keep bookings, communication and digital payments within the platform." },
+  { icon: Headphones, title: "Dedicated live support", text: "Get real-time assistance from the A About Pets team when needed." },
 ];
 
 const faqs = [
-  ["How do I know my pet and home are safe?", "Caregiver profiles include verification details, experience and reviews so you can make an informed choice before booking."],
-  ["Can I meet the caregiver before booking?", "Yes. We encourage a meet-and-greet to make sure you, your pet and the caregiver are comfortable before care begins."],
-  ["What happens if my plans change?", "Contact your caregiver as soon as possible and review the cancellation terms shown for your booking."],
-  ["How do payments work?", "Booking and payment information is confirmed through the A About Pets platform before the service starts."],
+  ["How does A About Pets work for pet owners?", "Download the app, browse caregivers by service, location and availability, then chat, book and pay securely through A About Pets."],
+  ["What pet care services are available?", "Caregivers may offer boarding, day care, house sitting—including drop-in or overnight care—and dog walking."],
+  ["How are caregivers verified?", "Every caregiver completes eKYC identity verification and an introduction test before offering services on the platform."],
+  ["Can one account be used as both pet owner and caregiver?", "Yes. The same A About Pets account can be used in both roles."],
 ];
 
 function Logo() {
@@ -49,6 +53,40 @@ function Logo() {
   );
 }
 
+function AppleLogo() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path fill="currentColor" d="M17.05 12.54c.02-2.18 1.78-3.23 1.86-3.28a4 4 0 0 0-3.15-1.7c-1.33-.14-2.62.8-3.3.8-.7 0-1.75-.78-2.89-.76a4.2 4.2 0 0 0-3.53 2.15c-1.53 2.65-.39 6.55 1.08 8.69.74 1.05 1.6 2.23 2.74 2.19 1.11-.05 1.52-.7 2.85-.7 1.32 0 1.7.7 2.86.67 1.2-.02 1.94-1.05 2.65-2.11a8.7 8.7 0 0 0 1.21-2.47 3.77 3.77 0 0 1-2.38-3.48ZM14.89 6.15a3.84 3.84 0 0 0 .88-2.75 3.9 3.9 0 0 0-2.55 1.3 3.63 3.63 0 0 0-.91 2.65 3.23 3.23 0 0 0 2.58-1.2Z" />
+    </svg>
+  );
+}
+
+function PlayLogo() {
+  return (
+    <svg viewBox="0 0 32 36" aria-hidden="true">
+      <path fill="#00d7fe" d="M2.2 1.7 18.8 18 2.2 34.3A3.7 3.7 0 0 1 1 31.5v-27c0-1.1.4-2 1.2-2.8Z" />
+      <path fill="#00ef84" d="m2.2 1.7 21.1 12-4.5 4.3L2.2 1.7Z" />
+      <path fill="#ffdf00" d="m18.8 18 4.5-4.3 5.1 2.9c1 .6 1 2.2 0 2.8l-5.1 2.9-4.5-4.3Z" />
+      <path fill="#ff495c" d="m2.2 34.3 21.1-12-4.5-4.3L2.2 34.3Z" />
+    </svg>
+  );
+}
+
+function AppBadges({ compact = false }: { compact?: boolean }) {
+  return (
+    <div className={`app-badges${compact ? " app-badges-compact" : ""}`} aria-label="Download the A About Pets app">
+      <a className="store-badge" href={appStore} target="_blank" rel="noreferrer" aria-label="Download A About Pets on the App Store">
+        <AppleLogo />
+        <span><small>Download on the</small><strong>App Store</strong></span>
+      </a>
+      <a className="store-badge" href={googlePlay} target="_blank" rel="noreferrer" aria-label="Get A About Pets on Google Play">
+        <PlayLogo />
+        <span><small>GET IT ON</small><strong>Google Play</strong></span>
+      </a>
+    </div>
+  );
+}
+
 export default function HomePage() {
   return (
     <main>
@@ -57,136 +95,101 @@ export default function HomePage() {
         <nav aria-label="Main navigation">
           <a href="#services">Services</a>
           <a href="#how">How It Works</a>
-          <a href="#safety">Safety</a>
-          <a href="#pricing">Pricing</a>
+          <a href="#safety">Why Us</a>
+          <a href="#faq">FAQ</a>
         </nav>
         <div className="header-actions">
-          <a className="button button-outline" href={website}>Become a Caregiver</a>
-          <a className="button button-primary" href={website}>Find Pet Care</a>
+          <a className="button button-outline" href="#caregivers">Become a Caregiver</a>
+          <a className="button button-primary" href="#download">Download App</a>
         </div>
       </header>
 
       <section className="hero" id="top">
         <div className="hero-copy">
-          <h1>Trusted care<br />for every paw</h1>
-          <p>Book reliable pet sitters, walkers and home visits across Singapore.</p>
-          <div className="hero-actions">
-            <a className="button button-primary button-wide" href={website}>Find Pet Care</a>
-            <a className="button button-outline button-wide" href={website}>Become a Caregiver</a>
-          </div>
+          <span className="eyebrow">Pet care across Singapore</span>
+          <h1>Peace of mind for you. A second home for them.</h1>
+          <p>Connect with locally vetted caregivers for boarding, house sitting, day care and dog walking—all from the A About Pets app.</p>
+          <AppBadges />
           <div className="hero-trust">
-            <span><BadgeCheck size={18} />Verified caregivers</span>
-            <span><LockKeyhole size={18} />Secure bookings</span>
-            <span><Headphones size={18} />Local support</span>
+            <span><BadgeCheck size={19} />eKYC-verified caregivers</span>
+            <span><Video size={19} />Integrated video calls</span>
+            <span><MessageCircle size={19} />In-app updates</span>
           </div>
         </div>
         <div className="hero-photo">
-          <Image
-            src="https://images.unsplash.com/photo-1601758174114-e711c0cbaa69?auto=format&fit=crop&w=1400&q=90"
-            alt="Caregiver relaxing at home with happy pets"
-            fill
-            priority
-            sizes="(max-width: 800px) 94vw, 52vw"
-          />
+          <Image src="/images/hero-caregiver-pets.jpg" alt="Caregiver relaxing at home with happy pets" fill priority sizes="(max-width: 800px) 94vw, 52vw" />
         </div>
       </section>
 
-      <section className="services" id="services" aria-label="Pet care services">
+      <section className="section-heading" id="services">
+        <span className="eyebrow">Care for every paw</span>
+        <h2>Pet care that fits your routine</h2>
+        <p>Flexible, home-based care options tailored to your pet and schedule.</p>
+      </section>
+      <section className="services" aria-label="Pet care services">
         {services.map(({ icon: Icon, title, text }) => (
           <article className="service-card" key={title}>
-            <Icon className="service-line-icon" size={66} strokeWidth={1.4} aria-hidden="true" />
-            <h2>{title}</h2>
-            <p>{text}</p>
+            <span className="icon-disc"><Icon size={38} strokeWidth={1.7} aria-hidden="true" /></span>
+            <h3>{title}</h3><p>{text}</p>
           </article>
         ))}
       </section>
 
       <section className="how-section" id="how">
-        <h2>How it works</h2>
+        <span className="eyebrow">A simpler way to care</span>
+        <h2>Three steps to trusted pet care</h2>
         <div className="steps">
-          <article>
-            <div className="step-visual"><span>1</span><div><CalendarDays /></div></div>
-            <h3>Choose a service</h3>
-            <p>Pick the care your pet needs<br />and tell us the details.</p>
-          </article>
+          <article><div className="step-visual"><span>1</span><div><Search /></div></div><h3>Discover local caregivers</h3><p>Browse profiles, services and real reviews near you.</p></article>
           <div className="step-line" aria-hidden="true" />
-          <article>
-            <div className="step-visual"><span>2</span><div><UserRound /></div></div>
-            <h3>Meet your caregiver</h3>
-            <p>We’ll match you with a verified<br />caregiver you can trust.</p>
-          </article>
+          <article><div className="step-visual"><span>2</span><div><CalendarCheck /></div></div><h3>Book with confidence</h3><p>Chat, select your dates and pay through the secure platform.</p></article>
           <div className="step-line" aria-hidden="true" />
-          <article>
-            <div className="step-visual"><span>3</span><div><ShieldCheck /></div></div>
-            <h3>Book with confidence</h3>
-            <p>Confirm, pay securely, and relax<br />knowing your pet is in good hands.</p>
-          </article>
+          <article><div className="step-visual"><span>3</span><div><PawPrint /></div></div><h3>Relax and get updates</h3><p>Stay connected with messages, photos and videos in the app.</p></article>
         </div>
       </section>
 
       <section className="safety-section" id="safety">
         <div className="safety-copy">
-          <h2>Care you can count on</h2>
-          <div className="safety-item"><span><BadgeCheck /></span><div><h3>Identity verified caregivers</h3><p>All caregivers go through rigorous identity and background verification.</p></div></div>
-          <div className="safety-item"><span><Star /></span><div><h3>Transparent reviews</h3><p>Real reviews from pet parents help you choose with confidence.</p></div></div>
-          <div className="safety-item"><span><Headphones /></span><div><h3>Local support, always</h3><p>Our friendly team in Singapore is here to help, whenever you need us.</p></div></div>
+          <span className="eyebrow">Where we are right now</span>
+          <h2>Proudly serving pet parents across Singapore</h2>
+          <p className="section-intro">From the CBD to the heartlands, find trusted caregivers in your community.</p>
+          <div className="safety-item"><span><MapPin /></span><div><h3>Island-wide coverage</h3><p>Search for boarding and caregivers by location and availability.</p></div></div>
+          <div className="safety-item"><span><BadgeCheck /></span><div><h3>Locally vetted caregivers</h3><p>Caregivers complete eKYC identity verification and a platform introduction test.</p></div></div>
         </div>
-        <div className="singapore-photo">
-          <Image src="https://images.unsplash.com/photo-1565967511849-76a60a516170?auto=format&fit=crop&w=1400&q=88" alt="Singapore skyline at Marina Bay" fill sizes="(max-width: 800px) 94vw, 52vw" />
+        <div className="singapore-photo"><Image src="/images/singapore-marina-bay.jpg" alt="Singapore skyline at Marina Bay" fill sizes="(max-width: 800px) 94vw, 52vw" /></div>
+      </section>
+
+      <section className="benefits-section">
+        <div className="section-heading"><span className="eyebrow">What sets us apart</span><h2>Transparency, safety and community</h2></div>
+        <div className="benefit-grid">
+          {benefits.map(({ icon: Icon, title, text }) => <article className="benefit-card" key={title}><Icon aria-hidden="true" /><h3>{title}</h3><p>{text}</p><span><Check size={15} /> Built into A About Pets</span></article>)}
         </div>
       </section>
 
-      <section className="pricing-section" id="pricing">
-        <h2>Fair pricing, no fine print</h2>
-        <div className="price-grid">
-          {prices.map((price) => (
-            <article className="price-card" key={price.name}>
-              <h3>{price.name}</h3>
-              <small>From</small>
-              <div className="price"><strong>{price.from}</strong><span>{price.unit}</span></div>
-              <p>{price.desc}</p>
-              <div className="price-note"><Check size={15} />{price.note}</div>
-            </article>
-          ))}
-        </div>
-        <a className="pricing-link" href={website}>View full pricing <ArrowRight size={16} /></a>
+      <section className="caregiver-section" id="caregivers">
+        <div><span className="eyebrow">For caregivers</span><h2>Love pets? Turn your passion into income.</h2><p>Join Singapore’s pet care community with flexible hours, competitive rates and one of the lowest platform fees in Singapore.</p><a className="text-link" href={website}>Learn how to become a caregiver <ArrowRight size={17} /></a></div>
+        <div><h3>Start with the A About Pets app</h3><AppBadges compact /></div>
       </section>
 
       <section className="faq-section" id="faq">
-        <h2>Frequently asked questions</h2>
-        <div className="faq-list">
-          {faqs.map(([question, answer]) => (
-            <details key={question}>
-              <summary>{question}<ChevronDown size={17} /></summary>
-              <p>{answer}</p>
-            </details>
-          ))}
-        </div>
+        <span className="eyebrow">Help centre</span><h2>Frequently asked questions</h2>
+        <div className="faq-list">{faqs.map(([question, answer]) => <details key={question}><summary>{question}<ChevronDown size={19} /></summary><p>{answer}</p></details>)}</div>
+        <a className="text-link faq-link" href="https://aaboutpets.com/faq.html">See full FAQ <ArrowRight size={17} /></a>
       </section>
 
-      <section className="final-cta">
-        <PawPrint className="cta-paw cta-paw-left" aria-hidden="true" />
-        <Heart className="cta-heart cta-heart-left" aria-hidden="true" />
-        <Dog className="cta-dog cta-dog-left" aria-hidden="true" />
-        <HouseHeart className="cta-house" aria-hidden="true" />
-        <PawPrint className="cta-paw cta-paw-right" aria-hidden="true" />
-        <Heart className="cta-heart cta-heart-right" aria-hidden="true" />
-        <div>
-          <h2>Ready to find trusted pet care?</h2>
-          <p>Join thousands of pet parents across Singapore.</p>
-          <a className="button button-primary cta-button" href={website}>Find Pet Care</a>
-        </div>
+      <section className="final-cta" id="download">
+        <PawPrint className="cta-paw cta-paw-left" aria-hidden="true" /><Heart className="cta-heart cta-heart-left" aria-hidden="true" /><Dog className="cta-dog cta-dog-left" aria-hidden="true" /><HouseHeart className="cta-house" aria-hidden="true" /><PawPrint className="cta-paw cta-paw-right" aria-hidden="true" />
+        <div><span className="eyebrow">Care wherever you are</span><h2>Ready to give your pet the best?</h2><p>Discover vetted caregivers, book securely and receive real-time updates.</p><AppBadges /></div>
       </section>
 
       <footer>
         <div className="footer-grid">
-          <div className="footer-brand"><Logo /><p>Reliable pet care. Happy pets.<br /><br />Peace of mind for pet parents<br />across Singapore.</p></div>
-          <div><h3>Services</h3><a href="#services">Pet Sitting</a><a href="#services">Dog Walking</a><a href="#services">Home Visits</a><a href="#services">Pet Taxi</a></div>
-          <div><h3>Company</h3><a href="#how">How It Works</a><a href="#safety">Safety</a><a href="#pricing">Pricing</a><a href={website}>Become a Caregiver</a></div>
-          <div><h3>Support</h3><a href="#faq">Help Centre</a><a href={website}>Contact Us</a><a href={website}>Terms of Service</a><a href={website}>Privacy Policy</a></div>
-          <div><h3>Follow us</h3><div className="socials"><a href={website} aria-label="Facebook"><span aria-hidden="true">f</span></a><a href={website} aria-label="Instagram"><span aria-hidden="true">◎</span></a><a href={website} aria-label="Help"><CircleHelp /></a></div></div>
+          <div className="footer-brand"><Logo /><p>Elevating pet care standards in Singapore. Peace of mind for you, a second home for them.</p></div>
+          <div><h3>Services</h3><a href="#services">Boarding</a><a href="#services">House Sitting</a><a href="#services">Day Care</a><a href="#services">Dog Walking</a></div>
+          <div><h3>Company</h3><a href="#how">How It Works</a><a href="#safety">Why Us</a><a href="#caregivers">For Caregivers</a><a href="https://aaboutpets.com/faq.html">Help Centre</a></div>
+          <div><h3>Legal</h3><a href="https://aaboutpets.com/privacy-policy.html">Privacy Policy</a><a href="https://aaboutpets.com/terms-of-use.html">Terms of Service</a><a href="mailto:support@aaboutpets.com">Contact Support</a></div>
+          <div><h3>Get the app</h3><AppBadges compact /><a className="support-link" href="mailto:support@aaboutpets.com"><CircleHelp size={16} /> support@aaboutpets.com</a></div>
         </div>
-        <div className="copyright">© 2026 A About Pets. All rights reserved.</div>
+        <div className="copyright">© 2026 A About Pets Pte. Ltd. All rights reserved. Made with care in Singapore.</div>
       </footer>
     </main>
   );
